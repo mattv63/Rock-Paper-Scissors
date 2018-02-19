@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+<head></head>
+
+<body>
+  <script>
+    function playRound(playerSelection, computerSelection){
+      let result;
+
+      console.log("You chose " + playerSelection);
+      console.log("The computer chose " + computerSelection);
+
+      if (playerSelection.toUpperCase() == "ROCK"){
+        if (computerSelection == "rock"){console.log("Tie."); result = 2;}
+        else if (computerSelection == "paper"){ console.log("Paper beats rock. You lose."); result = 1;}
+        else if (computerSelection == "scissors"){ console.log("Rock beats scissors. You win!"); result = 0;}
+      }
+
+      else if (playerSelection.toUpperCase() == "PAPER"){
+        if (computerSelection == "rock"){console.log("Paper beats rock. You win!"); result = 0;}
+        else if (computerSelection == "paper"){console.log("Tie."); result = 2;}
+        else if (computerSelection == "scissors"){console.log("Scissors beats paper. You lose."); result = 1;}
+      }
+
+      else if (playerSelection.toUpperCase() == "SCISSORS"){
+        if (computerSelection == "rock"){console.log("Rock beats scissors. You lose."); result = 1;}
+        else if (computerSelection == "paper"){console.log("Scissors beats paper. You win!"); result = 0;}
+        else if (computerSelection == "scissors"){console.log("Tie."); result = 2;}
+      }
+
+      return result;
+    }
+
+    function computerPlay(){
+      let compPlay = Math.floor((Math.random() * 3) + 1);
+      let compString = "";
+      if (compPlay == 1){
+        compString = "rock";
+      }
+      else if (compPlay == 2){
+        compString = "paper";
+      }
+      else if (compPlay == 3){
+        compString = "scissors";
+      }
+      return compString;
+    }
+
+    function game(){
+      let playerSelection;
+      let computerSelection;
+      let playerWins = 0;
+      let computerWins = 0;
+      let gameCounter = 0;
+      while (gameCounter < 5){
+        playerSelection = window.prompt("Make your choice");
+        computerSelection = computerPlay();
+        result = playRound(playerSelection, computerSelection);
+        if (result == 0){
+          playerWins++;
+        }
+        else if (result == 1){
+          computerWins++;
+        }
+        gameCounter++;
+      }
+      console.log("Final score: " + playerWins + " to " + computerWins);
+      if (playerWins > computerWins){
+        console.log("Congratulations! You win!");
+      }
+      else{
+        console.log("You lose. Try again?");
+      }
+    }
+    game();
+
+  </script>
+</body>
+</html>
